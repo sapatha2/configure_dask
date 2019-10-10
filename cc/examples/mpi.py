@@ -1,4 +1,4 @@
-#python local_dask.py
+#qsub mpi.qsub
 def hello_world(n):
   import time
   time.sleep(1)
