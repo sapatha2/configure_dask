@@ -5,17 +5,18 @@ def hello_world(n):
   return "Hello world "+str(n)
 
 if __name__ == '__main__':
-  from dask.distributed import Client
+  from dask.distributed import Client, LocalCluster
   from dask_mpi import initialize
   import time
   import numpy as np 
 
-  initialize()
+  initialize(local_directory='/scratch/users/sapatha2/', nanny=False, dashboard=False)
   client = Client()
   
+  res = client.map(hello_world, np.arange(380))
   start = time.time()
-  res = client.map(hello_world, np.arange(180))
-  for r in res: r.result()
+  for r in res: 
+      print (r.result())
   client.close()
   print(time.time() - start)
-  
+  exit(0)

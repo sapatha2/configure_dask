@@ -1,12 +1,11 @@
 #PBS -S /bin/bash
 #PBS -q secondary
-#PBS -l nodes=2:ppn=19
+#PBS -l nodes=2:ppn=20
 #PBS -l walltime=00:05:00
 #PBS -j oe
 #PBS -m n
-#PBS -o configure_dask_cc.jobout
-source /home/sapatha2/.bashrc
-conda activate mpi4py
-module load openmpi/3.1.1-gcc-7.2.0 gcc/7.2.0
+#PBS -o mpi.jobout
+source /home/sapatha2/.bashrc #Edit based on your bashrc
+conda activate /projects/wagner/anaconda3/envs/pyscf
 cd ${PBS_O_WORKDIR}
-mpirun python3 mpi.py &> mpi.stdout
+/usr/local/mpi/openmpi/3.1.1/gcc/7.2.0/bin/mpirun python3 mpi.py &> mpi.stdout
