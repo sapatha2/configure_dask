@@ -9,4 +9,4 @@ source /home/sapatha2/.bashrc #Edit based on your bashrc
 conda activate pyscf
 module load openmpi/3.1.1-gcc-7.2.0
 cd ${PBS_O_WORKDIR}
-mpirun python3 mpi.py &> mpi.stdout
+mpirun -np 40 --hostfile $PBS_NODEFILE python3 mpi.py &> mpi.stdout
