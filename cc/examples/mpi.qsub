@@ -6,6 +6,7 @@
 #PBS -m n
 #PBS -o mpi.jobout
 source /home/sapatha2/.bashrc #Edit based on your bashrc
-conda activate /projects/wagner/anaconda3/envs/pyscf
+conda activate pyscf
+module load openmpi/3.1.1-gcc-7.2.0
 cd ${PBS_O_WORKDIR}
-/usr/local/mpi/openmpi/3.1.1/gcc/7.2.0/bin/mpirun python3 mpi.py &> mpi.stdout
+mpirun python3 mpi.py &> mpi.stdout
